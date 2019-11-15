@@ -1,0 +1,109 @@
+/*************** common ********************/
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Valera Round", "sans-serif";
+    position: relative;
+    min-height: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+i,
+span {
+    padding: 0;
+    margin: 0;
+}
+
+.sectionHeading {
+    color: rgb(255, 100, 100);
+    font-size: 30px;
+    text-align: center;
+}
+
+section {
+    padding: 40px;
+}
+
+/**************** header *******************/
+
+header {
+    padding: 10px;
+    background-color: rgb(255, 100, 100);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+header ul {
+    float: right;
+}
+
+header li {
+    list-style: none;
+    padding: 0px;
+    display: inline;
+}
+
+header a {
+    color: white;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+/**************** footer *******************/
+
+footer {
+    padding: 20px;
+    background-color: rgb(255, 100, 100);
+    color: white;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+footer p {
+    font-size: 12px;
+}
+
+/**************** login ******************/
+
+.loginSec {
+    text-align: center;
+}
+
+.loginSec .googleLoginButton img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.loginSec .googleLoginButton {
+    background-color: #eee;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    color: black;
+}
+
+.loginSec .googleLoginButton:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
