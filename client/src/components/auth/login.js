@@ -1,14 +1,21 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { loginUsingGoogle } from "../../actions/auth";
+// import PropTypes from "prop-types";
+// import { loginUsingGoogle } from "../../actions/auth";
 
 import googleIcon from "../../images/googleIcon.png";
 
 class Login extends Component {
+    componentDidMount() {
+        console.log("isAuthenticated: " + this.props.auth.isAuthenticated);
+        if (this.props.auth.isAuthenticated) {
+            this.props.history.push("/");
+        }
+    }
+
     onClickingGoogle = e => {
-        console.log(this.props.loginUsingGoogle);
+        // console.log(this.propsloginUsingGoogle);
         this.props.loginUsingGoogle();
     };
 
@@ -17,13 +24,15 @@ class Login extends Component {
             <section className="loginSec">
                 <div className="container">
                     <h1 className="sectionHeading">Login</h1>
-                    <div
-                        className="googleLoginButton"
-                        onClick={this.onClickingGoogle}
-                    >
-                        <img src={googleIcon} alt="Google"></img>
-                        <span>Sign in with Google</span>
-                    </div>
+                    <a href="http://localhost:5000/api/auth/google">
+                        <div
+                            className="googleLoginButton"
+                            // onClick={this.onClickingGoogle}
+                        >
+                            <img src={googleIcon} alt="Google"></img>
+                            <span>Sign in with Google</span>
+                        </div>
+                    </a>
                 </div>
             </section>
         );
@@ -31,14 +40,11 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    loginUsingGoogle: PropTypes.func.isRequired
+    // loginUsingGoogle: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(
-    mapStateToProps,
-    { loginUsingGoogle }
-)(Login);
+export default connect(mapStateToProps, {})(Login);

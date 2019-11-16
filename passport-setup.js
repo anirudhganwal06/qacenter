@@ -5,8 +5,8 @@ const db = require("./database");
 
 const keys = require("./config/keys");
 
-passport.serializeUser((userId, done) => {
-    done(null, userId);
+passport.serializeUser((user, done) => {
+    done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
@@ -15,7 +15,7 @@ passport.deserializeUser((id, done) => {
         .doc(id)
         .get()
         .then(user => {
-            done(null, user.data());
+            done(null, { ...user.data(), _id: id });
         })
         .catch(err => {
             console.log(err);
@@ -38,21 +38,25 @@ passport.use(
                 .then(snapshot => {
                     if (snapshot.empty) {
                         console.log("1111");
+                        const newUser = {
+                            name: profile.displayName,
+                            googleId: profile.id,
+                            photoUrl: profile.photos[0].value
+                        };
                         db.collection("users")
-                            .add({
-                                name: profile.displayName,
-                                googleId: profile.id,
-                                photoUrl: profile.photos[0].value
-                            })
+                            .add(newUser)
                             .then(newUserRef => {
-                                done(null, newUserRef.id);
+                                const user = { ...newUser, _id: newUserRef.id };
+                                console.log(user);
+                                done(null, user);
                             })
                             .catch(err => {
                                 console.log(err);
                             });
                     } else {
                         snapshot.forEach(doc => {
-                            done(null, doc.id);
+                            console.log(doc.data());
+                            done(null, { ...doc.data(), _id: doc.id });
                         });
                     }
                 })

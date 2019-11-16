@@ -56,15 +56,23 @@ header li {
     display: inline;
 }
 
-header a {
+header a,
+header span {
     color: white;
     padding: 10px;
     transition: 0.2s;
+    cursor: pointer;
 }
 
-header a:hover {
+header a:hover,
+header span:hover {
     text-decoration: none;
     color: rgb(0, 0, 0);
+}
+
+.navbarProfileImg {
+    width: 25px;
+    height: 25px;
 }
 
 /**************** footer *******************/
