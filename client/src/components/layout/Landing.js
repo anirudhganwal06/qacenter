@@ -6,15 +6,16 @@ import { setCurrentUser } from "../../actions/auth";
 
 class Landing extends Component {
     componentDidMount() {
-        // await this.props.setCurrentUser();
-        console.log(this.props.auth);
+        console.log("in component did mount landing");
         if (this.props.auth.isAuthenticated) {
             this.props.history.push(
                 "/user/" + this.props.auth.user._id + "/dashboard"
             );
         }
+        // console.log("component did mount");
     }
     render() {
+        console.log("rendering landing");
         return (
             <div>
                 <h1>This is the landing page!</h1>

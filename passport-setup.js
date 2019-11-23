@@ -6,20 +6,23 @@ const db = require("./database");
 const keys = require("./config/keys");
 
 passport.serializeUser((user, done) => {
-    done(null, user._id);
+    // done(null, user._id);
+
+    done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
-    const usersRef = db.collection("users");
-    usersRef
-        .doc(id)
-        .get()
-        .then(user => {
-            done(null, { ...user.data(), _id: id });
-        })
-        .catch(err => {
-            console.log(err);
-        });
+passport.deserializeUser((user, done) => {
+    // const usersRef = db.collection("users");
+    // usersRef
+    //     .doc(id)
+    //     .get()
+    //     .then(user => {
+    //         done(null, { ...user.data(), _id: id });
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     });
+    done(null, user);
 });
 
 passport.use(
@@ -46,7 +49,10 @@ passport.use(
                         db.collection("users")
                             .add(newUser)
                             .then(newUserRef => {
-                                const user = { ...newUser, _id: newUserRef.id };
+                                const user = {
+                                    ...newUser,
+                                    _id: newUserRef.id
+                                };
                                 console.log(user);
                                 done(null, user);
                             })
@@ -56,7 +62,10 @@ passport.use(
                     } else {
                         snapshot.forEach(doc => {
                             console.log(doc.data());
-                            done(null, { ...doc.data(), _id: doc.id });
+                            done(null, {
+                                ...doc.data(),
+                                _id: doc.id
+                            });
                         });
                     }
                 })

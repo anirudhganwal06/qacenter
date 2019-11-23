@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: !!action.payload,
-                user: action.payload === "" ? {} : action.payload
+                user: action.payload
             };
         case LOGOUT:
             return {

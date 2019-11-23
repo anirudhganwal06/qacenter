@@ -6,14 +6,15 @@ import { setCurrentUser } from "../../actions/auth";
 
 class Dashboard extends Component {
     componentDidMount() {
-        this.props.setCurrentUser();
-
+        // this.props.setCurrentUser();
+        console.log("dashboard compponetdidmount");
         if (!this.props.auth.isAuthenticated) {
             this.props.history.push("/");
         }
     }
 
     render() {
+        console.log("dashboard render");
         const user = this.props.auth.user;
         return (
             <div>

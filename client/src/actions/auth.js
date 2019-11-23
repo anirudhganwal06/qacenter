@@ -15,6 +15,7 @@ import { SET_CURRENT_USER, LOGOUT } from "./types";
 // };
 
 export const setCurrentUser = () => dispatch => {
+    console.log("outside axios in auth actions");
     axios
         .get("/api/auth/current_user")
         .then(res => {
@@ -31,6 +32,7 @@ export const setCurrentUser = () => dispatch => {
 };
 
 export const logout = () => dispatch => {
+    console.log("axios logout");
     axios
         .get("/api/auth/logout")
         .then(res => {

@@ -7,13 +7,6 @@ import { connect } from "react-redux";
 import googleIcon from "../../images/googleIcon.png";
 
 class Login extends Component {
-    componentDidMount() {
-        console.log("isAuthenticated: " + this.props.auth.isAuthenticated);
-        if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/");
-        }
-    }
-
     onClickingGoogle = e => {
         // console.log(this.propsloginUsingGoogle);
         this.props.loginUsingGoogle();

@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 const db = require("../../database");
 
@@ -18,11 +19,23 @@ router.get(
         failureRedirect: "http://localhost:3000/login"
     }),
     (req, res) => {
-        console.log("in /google/redirect");
-        console.log(req.user);
-        res.redirect(
-            "http://localhost:3000/user/" + req.user._id + "/dashboard"
+        const payload = { ...req.user };
+
+        jwt.sign(
+            payload,
+            "rating_dropped",
+            { expiresIn: 3600 * 24 },
+            (err, token) => {
+                res.json({
+                    success: true,
+                    token: "Bearer " + token
+                });
+            }
         );
+
+        console.log("in /google/redirect");
+        // console.log(req.user.token);
+        res.redirect("http://localhost:3000/");
         // const userRef = db.collection("users").doc(req.user);
         // userRef
         //     .get()

@@ -34,6 +34,9 @@ class Header extends Component {
                 <li>
                     <span onClick={this.onLogout}>Logout</span>
                 </li>
+                <li>
+                    <Link to="/test">Test</Link>
+                </li>
             </ul>
         );
 
